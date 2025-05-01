@@ -8,7 +8,7 @@ class Victim:
         self.secret = os.urandom(16)
 
     def crc32(self, msg):
-        return zlib.crc32(msg).to_bytes(4, 'big')
+        return zlib.crc32(msg).to_bytes(4, 'little')
 
     def send_packet(self, msg):
         iv = os.urandom(3)
