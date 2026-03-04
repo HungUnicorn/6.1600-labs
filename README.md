@@ -3,6 +3,10 @@
 This repository contains my personal solutions for the labs in **MIT 6.1600 (Foundations of Computer Security)**.
 6.1600 is an undergraduate course at MIT focused on the design of secure systems.
 
+## 📚 Resources
+* **Official Course Site:** [6.1600 MIT](https://61600.csail.mit.edu/2024/)
+* **Lab Instructions:** [Documentation](./docs)
+
 ## 🚀 Lab Overview
 
 ### [Lab 0: Hashing](./hash)
@@ -23,7 +27,13 @@ This lab explores the failures resulting from reused randomness yand the lack of
 * **WEP Keystream Recovery**: Forging packets by recovering the RC4 keystream $K$ when both a message $M$ and its ciphertext $C$ are intercepted. Because $C = (M \parallel \text{CRC}(M)) \oplus K$, an attacker can extract $K$ to encrypt any arbitrary payload.
 * **CRC32 Bit-Flipping**: Leveraging the mathematical linearity of RC4 and CRC32. An attacker applies a bit-mask $L = \Delta M \parallel \text{CRC}(\Delta M)$ to modify encrypted traffic without knowing the key or plaintext, as the modified checksum remains valid.
 
-## 📚 Resources
-* **Official Course Site:** [6.1600 MIT](https://61600.csail.mit.edu/2024/)
-* **Lab Instructions:** [Documentation](./docs)
+### [Lab 3: Timing](./timing)
+This lab explores how minute differences in execution time can leak secret information, even when the data itself remains encrypted or inaccessible.
+* **Remote Timing Side-Channel**: Exploding an "early-exit" password comparison vulnerability. By measuring the server's response time, the attacker identifies which character causes the longest delay, allowing for recovery of the password.
+
+### [Lab 3: SSH](./ssh)
+This lab explores the failures resulting from reused randomness yand the lack of cryptographic integrity in early wireless protocols.
+* **Confidentiality Analysis**: Exploiting the deterministic nature of encryption when combined with compression. By observing the changes in packet lengths during the SSH handshake and data transfer, an attacker can infer the length of a secret without needing to decrypt the payload. This demonstrates that encryption alone does not hide metadata.
+* **Bit-Flipping & Integrity**: Executing attack against a "None-MAC" SSH configuration. An attacker can XOR the ciphertext with a calculated bit-mask: $`C_{new} = C_{old} \oplus P_{old} \oplus P_{new}`$ This allows for the surgical replacement of the command `ls ./files/*\n` with `rm -r /      \n`.
+
 ---
