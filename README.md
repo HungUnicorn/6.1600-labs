@@ -36,4 +36,10 @@ This lab explores the failures resulting from reused randomness yand the lack of
 * **Confidentiality Analysis**: Exploiting the deterministic nature of encryption when combined with compression. By observing the changes in packet lengths during the SSH handshake and data transfer, an attacker can infer the length of a secret without needing to decrypt the payload. This demonstrates that encryption alone does not hide metadata.
 * **Bit-Flipping & Integrity**: Executing attack against a "None-MAC" SSH configuration. An attacker can XOR the ciphertext with a calculated bit-mask: $`C_{new} = C_{old} \oplus P_{old} \oplus P_{new}`$ This allows for the surgical replacement of the command `ls ./files/*\n` with `rm -r /      \n`.
 
+### [Lab 4: Python Introspection](./escape)
+Exploiting function closures, the call stack, global module mutability, and the garbage collector to recover "isolated" secrets through language-level reflection.
+
+### [Lab 4: Sandbox Escapes](./wasm)
+Bypassing WASI directory restrictions via symlinks and stale file descriptor invariants, and manually bridging memory boundaries to execute isolated C code.
+
 ---

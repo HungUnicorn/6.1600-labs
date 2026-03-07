@@ -1,0 +1,6 @@
+mkdir outer
+mkdir outer/inner
+fd_open outer/inner
+mv outer/inner inner
+fd_openat 4 ../../secret.txt
+fd_read 5

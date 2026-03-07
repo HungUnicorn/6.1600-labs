@@ -1,0 +1,2 @@
+ln -s ../secret.txt exploit_link
+cat exploit_link
