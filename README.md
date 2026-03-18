@@ -3,6 +3,8 @@
 This repository contains my personal solutions for the labs in **MIT 6.1600 (Foundations of Computer Security)**.
 6.1600 is an undergraduate course at MIT focused on the design of secure systems.
 
+While some labs include built-in verification, others do not. For labs lacking official test suites, this repository provides custom validation scripts. Look for files named grader.py to verify the solutions.
+
 ## 📚 Resources
 * **Official Course Site:** [6.1600 MIT](https://61600.csail.mit.edu/2024/)
 * **Lab Instructions:** [Documentation](./docs)
@@ -42,4 +44,9 @@ Exploiting function closures, the call stack, global module mutability, and the 
 ### [Lab 4: Sandbox Escapes](./wasm)
 Bypassing WASI directory restrictions via symlinks and stale file descriptor invariants, and manually bridging memory boundaries to execute isolated C code.
 
+### [Lab 5: Fuzzing & Codec Security](./fuzz)
+This lab explores fuzzing and the design of serialization formats that remain secure against truncated or malicious data streams.
+
+* **Buggy MsgPacker and Repair**: Inherited a flawed implementation of the MessagePack specification. It contained several "silent" bugs—errors that didn't always crash the program but caused data corruption or failed to decode valid MessagePack buffers. Developed a fuzzer that compared the inherited flawed implementation against the official, reference msgpack Python library Utilizing **Atheris** to perform stress testing on custom codecs.  The fuzzer identified numerous boundary condition errors (missing or extra = in comparison operators).
+* **Robust Byte Codec**: Developed a "Punctuation-Hex" encoder mapping 4-bit nibbles to a unique 16-character punctuation alphabet ($L_{enc} \le 3 \cdot L_{raw}$). This design prevents "type confusion" and satisfies the Recoverability Rule through pessimistic parsing, ensuring truncated buffers decode only to valid prefixes without generating garbage data.
 ---

@@ -34,7 +34,7 @@ class Attacker:
         # or self.victim.receive_packet() here.
         #
         # You may call self.victim.check_packet(),
-        # defined in grader.py.
+        # defined in grader_msgpacker.py.
         
         ### Your cleverness here
         return guess_of_secret_msg
